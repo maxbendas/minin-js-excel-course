@@ -15,6 +15,7 @@ function toColumn(col) {
     return `
         <div class="column">
             ${col}
+        <div class="col-resize"></div>
         </div>
     `
 }
