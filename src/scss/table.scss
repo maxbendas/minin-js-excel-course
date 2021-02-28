@@ -17,6 +17,7 @@
   }
 
   .row-info {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,18 +69,33 @@
     }
   }
 
-  .col-resize {
+  .col-resize, .row-resize{
     position: absolute;
-    top: 0;
     bottom: 0;
     right: 0;
     opacity: 0;
     background: $primary-color;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .col-resize {
+    top: 0;
     width: 4px;
 
-    &:hover{
-      opacity: 1;
+    &:hover {
       cursor: col-resize;
+    }
+  }
+
+  .row-resize {
+    left: 0;
+    height: 4px;
+
+    &:hover {
+      cursor: row-resize;
     }
   }
 }
