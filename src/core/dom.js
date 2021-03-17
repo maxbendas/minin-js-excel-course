@@ -33,6 +33,24 @@ class Dom {
         this.$el.append(node)
         return this
     }
+    get data(){
+        return this.$el.dataset
+    }
+
+    closest(selector){
+        return $(this.$el.closest(selector))
+    }
+
+    getCoords(){
+        return this.$el.getBoundingClientRect()
+    }
+
+    findAll(selector){
+        return this.$el.querySelectorAll(selector)
+    }
+    css(styles = {}){
+        return this.$el.style.styles
+    }
 }
 
 export function $(selector) {
