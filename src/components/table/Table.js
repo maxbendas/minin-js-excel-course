@@ -16,17 +16,14 @@ export class Table extends ExcelComponent {
         return createTable(20)
     }
 
-    // onClick() {
-    //     console.log('click')
-    // }
-    //
+    init(){
+        super.init()
+        console.log('init')
+    }
+
     onMousedown(event) {
         if (shouldResize(event)) {
             resizeHandler(this.$root, event)
         }
     }
-
-    // onMousemove(){
-    //     console.log('mousemove')
-    // }
 }
