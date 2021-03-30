@@ -9,6 +9,9 @@
 
   & span {
     font-size: 18px;
+    &.active{
+      color: $color;
+    }
   }
   &:active, &.active {
     color: $color;

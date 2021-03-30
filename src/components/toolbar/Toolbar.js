@@ -1,25 +1,43 @@
-import {ExcelComponent} from "@core/ExcelComponent";
 import {createToolbar} from "@/components/toolbar/toolbar.tamplate";
 import {$} from "@core/dom";
+import {ExcelStateComponent} from "@core/ExcelStateComponent";
 
-export class Toolbar extends ExcelComponent {
+export class Toolbar extends ExcelStateComponent {
     static className = 'excel__toolbar'
 
     constructor($root, options) {
         super($root, {
             name: 'Toolbar',
-            listeners:['click'],
+            listeners: ['click'],
             ...options
         })
     }
 
-    toHTML() {
-        return createToolbar()
+    prepare() {
+        const initialState = {
+            textAlign: 'left',
+            fontWeight: 'normal',
+            textDecoration: 'none',
+            fontStyle: 'normal'
+        }
+        this.initState(initialState)
     }
-    onClick(event){
+
+    get template() {
+        return createToolbar(this.state)
+    }
+
+    toHTML() {
+        return this.template
+    }
+
+    onClick(event) {
         const $target = $(event.target)
-        if ($target.data.type === 'button'){
-            console.log($target.data.value)
+        if ($target.data.type === 'button') {
+            const value = JSON.parse($target.data.value)
+            const key = Object.keys(value)[0]
+            this.setState({[key]:value[key]})
+            console.log(this.state)
         }
     }
 }
