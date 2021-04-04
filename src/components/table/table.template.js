@@ -25,14 +25,14 @@ function toCell(state, row) {
         const data = state.dataState[id]
         const styles = toInlineStyles({
             ...defaultStyles,
-            ...state.styleState[id]})
+            ...state.stylesState[id]})
         return `
          <div class="cell"
          contenteditable
          data-type="cell"
          data-col="${col}"
          data-id="${id}"
-         data-value="${data||''}"
+         data-value="${data || ''}"
          style="${styles}; width: ${width}"
          >${parse(data) || ''}</div>
      `
@@ -51,7 +51,7 @@ ${col}
     `
 }
 
-function createRow(index, content, state) {
+function createRow(index, content, state={}) {
     const resizer = index ?
         '<div class="row-resize" data-resize="row"></div>' : ''
     const height = getHeight(state, index)
@@ -84,7 +84,6 @@ function withWidthFrom(state) {
 export function createTable(rowsCount = 15, state = {}) {
     const colsCount = CODES.Z - CODES.A + 1
     const rows = []
-    // console.log(state)
     const cols = new Array(colsCount)
         .fill('')
         .map(toChar)
@@ -92,7 +91,7 @@ export function createTable(rowsCount = 15, state = {}) {
         .map(toColumn)
         .join('')
 
-    rows.push(createRow(null, cols, {}))
+    rows.push(createRow(null, cols))
 
     for (let row = 0; row < rowsCount; row++) {
         const cells = new Array(colsCount)

@@ -13,12 +13,12 @@ class Dom {
         return this.$el.outerHTML.trim()
     }
 
-    text(text){
+    text(text) {
         if (typeof text !== 'undefined') {
             this.$el.textContent = text
             return this
         }
-        if(this.$el.tagName.toLowerCase()==='input'){
+        if (this.$el.tagName.toLowerCase() === 'input') {
             return this.$el.value.trim()
         }
         return this.$el.textContent.trim()
@@ -29,15 +29,15 @@ class Dom {
         return this
     }
 
-    on(eventType, callback){
+    on(eventType, callback) {
         this.$el.addEventListener(eventType, callback)
     }
 
-    off(eventType, callback){
+    off(eventType, callback) {
         this.$el.removeEventListener(eventType, callback)
     }
 
-    find(selector){        
+    find(selector) {
         return $(this.$el.querySelector(selector))
     }
 
@@ -48,47 +48,48 @@ class Dom {
         this.$el.append(node)
         return this
     }
-    get data(){
+
+    get data() {
         return this.$el.dataset
     }
 
-    closest(selector){
+    closest(selector) {
         return $(this.$el.closest(selector))
     }
 
-    getCoords(){
+    getCoords() {
         return this.$el.getBoundingClientRect()
     }
 
-    findAll(selector){
+    findAll(selector) {
         return this.$el.querySelectorAll(selector)
     }
 
     css(styles = {}) {
-        Object.keys(styles).forEach(key=>{
+        Object.keys(styles).forEach(key => {
             this.$el.style[key] = styles[key]
         })
     }
 
-    getStyles(styles=[]){
-        return styles.reduce((res, s)=>{
-            res[s]=this.$el.style[s]
+    getStyles(styles = []) {
+        return styles.reduce((res, s) => {
+            res[s] = this.$el.style[s]
             return res
         }, {})
     }
 
-    id(parse){
-        if(parse){
+    id(parse) {
+        if (parse) {
             const parsed = this.id().split(':')
             return {
-                col:+parsed[0],
-                row:+parsed[1]
+                col: +parsed[0],
+                row: +parsed[1]
             }
         }
         return this.data.id
     }
 
-    focus(){
+    focus() {
         this.$el.focus()
         return this
     }
@@ -101,12 +102,12 @@ class Dom {
         return this.$el.getAttribute(name)
     }
 
-    addClass(className){
+    addClass(className) {
         this.$el.classList.add(className)
         return this
     }
 
-    removeClass(className){
+    removeClass(className) {
         this.$el.classList.remove(className)
         return this
     }
